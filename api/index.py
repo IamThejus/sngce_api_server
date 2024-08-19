@@ -91,7 +91,7 @@ app=Flask(__name__)
 
 @app.route("/")
 def home():
-    return "This is an API Server"
+    return message
 @app.route("/get_attendance",methods=["POST"])
 def attendance():
     if request.method=="POST":
