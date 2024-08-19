@@ -3,6 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 
 
+message="This is an API Server.\nInorder to acess you can use get_attendance,get_timetable,get_materials\nUse Username and Passwd as payload"
+
 url="https://sngce.etlab.in/user/login"
 
 def check_n(data):
