@@ -87,9 +87,6 @@ def get_materials(userid,passwd):
 
 app=Flask(__name__)
 
-@app.route("/")
-def home():
-    return "Hello this is an API Server"
 @app.route("/get_attendance",methods=["POST"])
 def attendance():
     if request.method=="POST":
