@@ -1,28 +1,70 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# sngce-data-scraper
 
-# Flask + Vercel
+This is a simple API server hosted on Vercel that scrapes academic data from the SNGCE college website. The API provides endpoints for fetching student data from the specified academic institution.
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+## Features
 
-## Demo
+- Scrapes student data from the SNGCE college website.
+- Returns data in JSON format.
+- Hosted on Vercel for easy access and deployment.
 
-https://flask-python-template.vercel.app/
+## API Endpoints
 
-## How it Works
+### POST /scrape
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
+**Description**: Initiates the scraping process and returns academic data in JSON format.
 
-## Running Locally
 
-```bash
-npm i -g vercel
-vercel dev
-```
+Deployment
 
-Your Flask application is now available at `http://localhost:3000`.
+This API is deployed on Vercel. You can access it via the following URL:
 
-## One-Click Deploy
+arduino
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+https://sngce-api-server.vercel.app/
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+Installation
+
+To run this API locally, follow these steps:
+
+    Clone the repository:
+
+    bash
+
+git clone https://github.com/IamThejus/sngce_api_server.git
+
+Navigate to the project directory:
+
+bash
+
+cd sngce-data-scraper
+
+
+
+Contributing
+
+Feel free to contribute to this project by opening issues or submitting pull requests. Please follow these guidelines:
+
+    Fork the repository.
+    Create a feature branch (git checkout -b feature-branch).
+    Commit your changes (git commit -am 'Add new feature').
+    Push to the branch (git push origin feature-branch).
+    Create a new Pull Request.
+
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+Acknowledgements
+
+    Vercel for hosting the API.
+    The SNGCE college website for providing the academic data.
+
+Contact
+
+For any questions or issues, please contact:
+
+    Author: Thejus A
+    GitHub: https://github.com/IamThejus
+
+
+
