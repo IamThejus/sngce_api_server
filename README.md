@@ -1,4 +1,8 @@
 
+# sngce-api-server
+
+This is a simple API server hosted on Vercel that scrapes academic data from the SNGCE college website. The API provides endpoints for fetching student data from the specified academic institution.
+
 ## API Reference
 
 #### POST Attendance
