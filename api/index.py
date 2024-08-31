@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-message="This is an API Server.\nInorder to acess you can use get_attendance,get_timetable,get_materials\nUse Username and Passwd as payload"
+message="This is an API Server.\nInorder to acess you can use get_attendance,get_timetable,get_materials\nUse Username and Password as payload"
 
 url="https://sngce.etlab.in/user/login"
 
@@ -117,7 +117,7 @@ def attendance():
     if request.method=="POST":
         data=request.json
         usrname=data["Username"]
-        passwd=data["Passwd"]
+        passwd=data["Password"]
         data=get_attendance(usrname,passwd)
     return jsonify(data)
 
@@ -127,7 +127,7 @@ def timetable():
     if request.method=="POST":
         data=request.json
         usrname=data["Username"]
-        passwd=data["Passwd"]
+        passwd=data["Password"]
         data=get_time_table(usrname,passwd)
     return jsonify(data)
 
@@ -136,7 +136,7 @@ def materials():
     if request.method=="POST":
         data=request.json
         usrname=data["Username"]
-        passwd=data["Passwd"]
+        passwd=data["Password"]
         data=get_materials(usrname,passwd)
     return jsonify(data)
 
