@@ -116,9 +116,12 @@ def home():
 def attendance():
     if request.method=="POST":
         data=request.json
-        usrname=data["Username"]
-        passwd=data["Password"]
-        data=get_attendance(usrname,passwd)
+        if ("Username" in data) and ("Password" in data):
+            usrname=data["Username"]
+            passwd=data["Password"]
+            data=get_attendance(usrname,passwd)
+        else:
+            data={"Status":"Failed","message":"Used parameters might be wrong use 'Username' for username and 'Password' for password"}
     return jsonify(data)
 
 
@@ -126,18 +129,24 @@ def attendance():
 def timetable():
     if request.method=="POST":
         data=request.json
-        usrname=data["Username"]
-        passwd=data["Password"]
-        data=get_time_table(usrname,passwd)
+        if ("Username" in data) and ("Password" in data):
+            usrname=data["Username"]
+            passwd=data["Password"]
+            data=get_attendance(usrname,passwd)
+        else:
+            data={"Status":"Failed","message":"Used parameters might be wrong use 'Username' for username and 'Password' for password"}
     return jsonify(data)
 
 @app.route("/get_materials",methods=["POST"])
 def materials():
     if request.method=="POST":
         data=request.json
-        usrname=data["Username"]
-        passwd=data["Password"]
-        data=get_materials(usrname,passwd)
+        if ("Username" in data) and ("Password" in data):
+            usrname=data["Username"]
+            passwd=data["Password"]
+            data=get_attendance(usrname,passwd)
+        else:
+            data={"Status":"Failed","message":"Used parameters might be wrong use 'Username' for username and 'Password' for password"}
     return jsonify(data)
 
 
