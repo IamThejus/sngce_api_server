@@ -18,7 +18,7 @@ Request
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `Username`| `string` | **Required**. Your Sngce Username |
-| `Passwd`  |  `string`| **Required**.Your Sngce Password |
+| `Password`  |  `string`| **Required**.Your Sngce Password |
 
 #### POST Timetable
 
@@ -33,7 +33,7 @@ Request
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `Username`| `string` | **Required**. Your Sngce Username |
-| `Passwd`  |  `string`| **Required**.Your Sngce Password |
+| `Password`  |  `string`| **Required**.Your Sngce Password |
 
 #### POST Materials
 
@@ -48,7 +48,7 @@ Request
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `Username`| `string` | **Required**. Your Sngce Username |
-| `Passwd`  |  `string`| **Required**.Your Sngce Password |
+| `Password`  |  `string`| **Required**.Your Sngce Password |
 
 
 #### Response
@@ -72,7 +72,7 @@ Using requests module in python
     passwd=""     ## Your Password
     payload={
         "Username":usr_id,
-        "Passwd":passwd
+        "Password":passwd
     }
     print(requests.post(url,json=payload).json())
 
@@ -84,7 +84,7 @@ Using Curl
 
     curl -X POST https://sngce-api-server.vercel.app/get_attendance \
      -H "Content-Type: application/json" \
-     -d '{"Username": "<Your Username>, "Passwd": "<Your Password>"}'
+     -d '{"Username": "<Your Username>, "Password": "<Your Password>"}'
 
 Response
 
