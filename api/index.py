@@ -53,8 +53,8 @@ def get_attendance(usrid,passwd):
         ordered_keys = ['Name', 'UNi Reg No', 'Roll No'] + \
                 [key for key in result if key not in ['Name', 'UNi Reg No', 'Roll No', 'Percentage']] + \
                 ['Percentage']
-        result = {key: result[key] for key in ordered_keys}
-        return {"Status":"Success","message":result}
+        final_result = {key: result[key] for key in ordered_keys}
+        return {"Status":"Success","message":final_result}
     else:
         return {"Status":"Failed","message":logged_in["message"]}
 
