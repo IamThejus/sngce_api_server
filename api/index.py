@@ -50,6 +50,10 @@ def get_attendance(usrid,passwd):
         table_value=data_content.find_all("td")
         for i in range(len(table_header)):
             result[check_n(table_header[i].text)]=check_n(table_value[i].text)
+            ordered_keys = ['Name', 'UNi Reg No', 'Roll No'] + \
+                   [key for key in result if key not in ['Name', 'UNi Reg No', 'Roll No', 'Percentage']] + \
+                   ['Percentage']
+            result = {key: result[key] for key in ordered_keys}
         return {"Status":"Success","message":result}
     else:
         return {"Status":"Failed","message":logged_in["message"]}
