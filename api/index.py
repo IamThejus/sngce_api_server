@@ -7,14 +7,29 @@ message="This is an API Server.\nInorder to acess you can use get_attendance,get
 
 url="https://sngce.etlab.in/user/login"
 
+def check_t(data):
+    split_t=data.split("\t")
+    if len(split_t)==1:
+        return split_t[0]
+    else:
+        for i in split_t:
+            if len(i)>2:
+                return i
+
 def check_n(data):
     split_n=data.split("\n")
     if len(split_n)==1:
         return split_n[0]
     else:
         for i in split_n:
-            if len(i)>0:
+            if len(i)>2:
                 return i
+
+def text_corrector(data):
+    not_n=check_n(data)
+    return check_t(not_n)
+
+
             
 def get_loggedin(usrid,passwd):
     payload={
@@ -49,12 +64,8 @@ def get_attendance(usrid,passwd):
         table_header=data_content.find_all("th")
         table_value=data_content.find_all("td")
         for i in range(len(table_header)):
-            result[check_n(table_header[i].text)]=check_n(table_value[i].text)
-        ordered_keys = ['Name', 'UNi Reg No', 'Roll No'] + \
-                [key for key in result if key not in ['Name', 'UNi Reg No', 'Roll No', 'Percentage']] + \
-                ['Percentage']
-        final_result = {key: result[key] for key in ordered_keys}
-        return {"Status":"Success","message":final_result}
+            result[text_corrector(table_header[i].text)]=text_corrector(table_value[i].text)
+        return {"Status":"Success","message":result}
     else:
         return {"Status":"Failed","message":logged_in["message"]}
 
