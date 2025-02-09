@@ -7,27 +7,6 @@ message="This is an API Server.\nInorder to acess you can use get_attendance,get
 
 url="https://sngce.etlab.in/user/login"
 
-def check_t(data):
-    split_t=data.split("\t")
-    if len(split_t)==1:
-        return split_t[0]
-    else:
-        for i in split_t:
-            if len(i)>2:
-                return i
-
-def check_n(data):
-    split_n=data.split("\n")
-    if len(split_n)==1:
-        return split_n[0]
-    else:
-        for i in split_n:
-            if len(i)>2:
-                return i
-
-def text_corrector(data):
-    not_n=check_n(data)
-    return check_t(not_n)
 
 
             
@@ -47,7 +26,7 @@ def get_loggedin(usrid,passwd):
     if message is None:
         result={"request":True,"session":session}
     else:
-        result={"request":False,"message":check_n(message.text)}
+        result={"request":False,"message":message.text.strip()}
     return result
 
 
@@ -64,10 +43,10 @@ def get_attendance(usrid,passwd):
         table_header=data_content.find_all("th")
         table_value=data_content.find_all("td")
         for i in range(len(table_header)):
-            result[text_corrector(table_header[i].text)]=text_corrector(table_value[i].text)
+            result[table_header[i].text.strip()]=table_value[i].text.strip()
         return {"Status":"Success","message":result}
     else:
-        return {"Status":"Failed","message":logged_in["message"]}
+        return {"Status":"Failed","message":logged_in["message"].strip()}
 
 def get_time_table(usrid,passwd):
     timetable="https://sngce.etlab.in/student/timetable"
@@ -83,12 +62,12 @@ def get_time_table(usrid,passwd):
                 mini_data=i.find_all("td")
                 result[mini_data[0].text]=[]
                 for j in range(1,len(mini_data)):
-                    result[mini_data[0].text].append(check_n(mini_data[j].text))
+                    result[mini_data[0].text].append(mini_data[j].text.strip())
             except:
                 continue
         return {"Status":"Success","message":result}
     else:
-        return {"Status":"Failed","message":logged_in["message"]}
+        return {"Status":"Failed","message":logged_in["message"].strip()}
 
 def get_materials(userid,passwd):
     url="https://sngce.etlab.in/student/materials"
@@ -121,7 +100,7 @@ def get_materials(userid,passwd):
         return {"Status":"Success","message":result}
     else:
         return {"Status":"Failed","message":logged_in["message"]}
-
+    
 app=Flask(__name__)
 
 @app.route("/")
