@@ -163,7 +163,7 @@ def attendancefull():
         if ("Username" in data) and ("Password" in data):
             usrname=data["Username"]
             passwd=data["Password"]
-            data=get_attendance(usrname,passwd)
+            data=get_attendance_full(usrname,passwd)
         else:
             data={"Status":"Failed","message":"Used parameters might be wrong use 'Username' for username and 'Password' for password"}
     return jsonify(data)
