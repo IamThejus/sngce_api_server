@@ -40,6 +40,8 @@ def get_attendance_full(usrid,passwd):
         odd=data_content.find_all(class_="odd")
         even=data_content.find_all(class_="even")
         result={}
+        overall=0
+        count=0   
         for i in even:
             val=i.find_all("td")
             try:
@@ -48,6 +50,8 @@ def get_attendance_full(usrid,passwd):
                     "count":val[2].text.strip(),
                     "percent":val[3].text.strip()
                 }
+                overall+=int(val[3].text.strip())
+                count+=1
             except:
                 continue
         for i in odd:
@@ -61,6 +65,7 @@ def get_attendance_full(usrid,passwd):
             except:
                 continue
         if len(result)!=0:
+            result["overall_percent"]=overall//count
             return {"Status":"Success","message":result}
         else:
             return {"Status":"Failed","message":"No Data retrived!!!"}
