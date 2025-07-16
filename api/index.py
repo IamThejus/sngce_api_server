@@ -152,7 +152,7 @@ def attendance():
     return jsonify(data)
 
 @app.route("/get_attendance_full",methods=["POST"])
-def attendance():
+def attendancefull():
     if request.method=="POST":
         data=request.json
         if ("Username" in data) and ("Password" in data):
