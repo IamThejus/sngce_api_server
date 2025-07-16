@@ -62,6 +62,8 @@ def get_attendance_full(usrid,passwd):
                     "count":val[2].text.strip(),
                     "percent":val[3].text.strip()
                 }
+                overall+=int(val[3].text.strip())
+                count+=1
             except:
                 continue
         if len(result)!=0:
