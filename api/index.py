@@ -30,7 +30,40 @@ def get_loggedin(usrid,passwd):
     return result
 
 
-
+def get_attendance_full(usrid,passwd):
+    url="https://sngce.etlab.in/ktuacademics/student/results"
+    logged_in=get_loggedin(usrid,passwd)
+    if logged_in["request"]==True:
+        logged_in=logged_in["session"]
+        data=logged_in.get(url)
+        data_content=BeautifulSoup(data.content,"html.parser")
+        odd=data_content.find_all(class_="odd")
+        even=data_content.find_all(class_="even")
+        result={}
+        for i in even:
+            val=i.find_all("td")
+            try:
+                result[val[0].text.strip()]={
+                    "sub_name":val[1].text.strip().split("-")[-1],
+                    "count":val[2].text.strip(),
+                    "percent":val[3].text.strip()
+                }
+            except:
+                continue
+        for i in odd:
+            val=i.find_all("td")
+            try:
+                result[val[0].text.strip()]={
+                    "sub_name":val[1].text.strip().split("-")[-1],
+                    "count":val[2].text.strip(),
+                    "percent":val[3].text.strip()
+                }
+            except:
+                continue
+        if len(result)!=0:
+            return {"Status":"Success","message":result}
+        else:
+            return {"Status":"Failed","message":"No Data retrived!!!"}
 
 def get_attendance(usrid,passwd):
     attendance="https://sngce.etlab.in/ktuacademics/student/viewattendancesubject/11"
@@ -107,6 +140,18 @@ app=Flask(__name__)
 def home():
     return message
 @app.route("/get_attendance",methods=["POST"])
+def attendance():
+    if request.method=="POST":
+        data=request.json
+        if ("Username" in data) and ("Password" in data):
+            usrname=data["Username"]
+            passwd=data["Password"]
+            data=get_attendance(usrname,passwd)
+        else:
+            data={"Status":"Failed","message":"Used parameters might be wrong use 'Username' for username and 'Password' for password"}
+    return jsonify(data)
+
+@app.route("/get_attendance_full",methods=["POST"])
 def attendance():
     if request.method=="POST":
         data=request.json
