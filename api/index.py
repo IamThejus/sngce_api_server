@@ -50,7 +50,7 @@ def get_attendance_full(usrid,passwd):
                     "count":val[2].text.strip(),
                     "percent":val[3].text.strip()
                 }
-                overall+=int(val[3].text.strip())
+                overall+=int(val[3].text.strip().split("%")[0])
                 count+=1
             except:
                 continue
@@ -62,13 +62,12 @@ def get_attendance_full(usrid,passwd):
                     "count":val[2].text.strip(),
                     "percent":val[3].text.strip()
                 }
-                overall+=int(val[3].text.strip())
+                overall+=int(val[3].text.strip().split("%")[0])
                 count+=1
             except:
                 continue
         if len(result)!=0:
-            result["overall_percent"]=overall//count
-            return {"Status":"Success","message":result}
+            return {"Status":"Success","message":result,"overall_percent":overall//count}
         else:
             return {"Status":"Failed","message":"No Data retrived!!!"}
 
