@@ -168,7 +168,9 @@ def attendance():
 def get_cached_attendance():
     data = r.get("attendance_data")
     if data:
-        return jsonify(json.loads(data))
+        # Decode bytes to string before loading JSON
+        decoded = data.decode('utf-8')
+        return jsonify(json.loads(decoded))
     else:
         return jsonify({"error": "No data found"}), 404
 
