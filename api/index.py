@@ -1,7 +1,12 @@
 from flask import Flask,jsonify,request
 import requests
+import redis
 from bs4 import BeautifulSoup
 
+
+# Get Redis URL from environment variable
+REDIS_URL = os.environ.get("REDIS_URL")
+r = redis.Redis.from_url(REDIS_URL)
 
 message="This is an API Server.\nInorder to acess you can use get_attendance,get_timetable,get_materials\nUse Username and Password as payload"
 
@@ -156,6 +161,16 @@ def attendance():
         else:
             data={"Status":"Failed","message":"Used parameters might be wrong use 'Username' for username and 'Password' for password"}
     return jsonify(data)
+
+
+@app.route("/get_cached_attendance")
+def get_cached_attendance():
+    data = r.get("attendance_data")
+    if data:
+        return jsonify(json.loads(data))
+    else:
+        return jsonify({"error": "No data found"}), 404
+
 
 @app.route("/get_attendance_full",methods=["POST"])
 def attendancefull():
